@@ -1,5 +1,5 @@
 import sys
-
+from collections import Counter 
 
 def one_to_one_char_map(s1,s2):
     """This function determine whether a one-to-one character mapping exist from one string, s1, to another s2. 
@@ -19,10 +19,14 @@ def one_to_one_char_map(s1,s2):
         return False
 
     #This step the len should be the same so now
-    #Second string s1 cannot has duplicate characters
-    if len(s1) != len(set(s1)):
-        return False
+    #Speical Case such as s1 = abb and s2 = acc 
     
+    s1__count = Counter(s1) # count each occurance of char 
+    s2__count = Counter(s2) # count each occurance of char 
+    # store values in a sorted list and compare. So we can map
+    if sorted(list(s1__count.values())) != sorted(list(s2__count.values())): 
+        return False
+        
     #At this point s1 and s1 should be from english alphabet, same length and s1 is unique so it can map to s2 which has enough letters to map each. 
     return True
     
